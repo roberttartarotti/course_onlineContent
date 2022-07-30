@@ -1,11 +1,21 @@
 # Robert Tartarotti, 2022-07-29
-# Power on and power off the led
+# Power on the led with push botton
 
 import RPi.GPIO as GPIO
 import time
 import sys
 
 LED_PIN = 17
+BUTTON_PIN = 26
+
+
+def detect_botton():
+    """ Detect botton """
+    GPIO.setmode(GPIO.BCM)
+
+    GPIO.setup(BUTTON_PIN, GPIO.IN)
+
+    return GPIO.input(BUTTON_PIN)
 
 
 def power_led():
@@ -13,11 +23,8 @@ def power_led():
     GPIO.setup(LED_PIN, GPIO.OUT)
 
     while True:
-        state = input("Insert 1 to turn on and 0 to turn off the led: ")
-        if state not in ("0", "1"):
-            print("Invalid input parameter")
-            continue
-        if state == "1":
+        time.sleep(0.01)
+        if detect_botton():
             GPIO.output(LED_PIN, GPIO.HIGH)
         else:
             GPIO.output(LED_PIN, GPIO.LOW)
