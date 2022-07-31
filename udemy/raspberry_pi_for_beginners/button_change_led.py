@@ -32,7 +32,6 @@ def power_led(led_id, operation):
 def main():
     global BUTTON_PREVIUS_STATUS
     led_id = 0
-    power_led(LED_PIN[led_id], True)
     for id in range(3):
         power_led(LED_PIN[id], False)
     while True:

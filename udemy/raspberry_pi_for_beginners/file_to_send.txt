@@ -1,0 +1,1 @@
+This text file has been created on the Raspberry PI to test E-mail sending.

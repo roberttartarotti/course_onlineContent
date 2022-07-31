@@ -7,8 +7,8 @@ import sys
 
 BUTTON_PIN = 26
 
-def detect_botton():
-    """ Detect botton """
+def detect_button():
+    """ Detect button """
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(BUTTON_PIN, GPIO.IN)
@@ -18,7 +18,7 @@ def detect_botton():
     
 
 def main():
-    detect_botton()
+    detect_button()
 
 try:
     main()

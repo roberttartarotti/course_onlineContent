@@ -9,8 +9,8 @@ LED_PIN = 17
 BUTTON_PIN = 26
 
 
-def detect_botton():
-    """ Detect botton """
+def detect_button():
+    """ Detect button """
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(BUTTON_PIN, GPIO.IN)
@@ -24,7 +24,7 @@ def power_led():
 
     while True:
         time.sleep(0.01)
-        if detect_botton():
+        if detect_button():
             GPIO.output(LED_PIN, GPIO.HIGH)
         else:
             GPIO.output(LED_PIN, GPIO.LOW)
