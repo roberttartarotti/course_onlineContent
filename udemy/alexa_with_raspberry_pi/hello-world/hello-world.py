@@ -22,7 +22,7 @@ def hello(firstname):
     if firstname is None:
         # No name was given
         return question(render_template("ask_name"))
-        response_text = render_template("hello", firstname=firstname)
+    response_text = render_template("hello", firstname=firstname)
     return statement(response_text).simple_card("Hello", response_text)
 
 if __name__ == "__main__":

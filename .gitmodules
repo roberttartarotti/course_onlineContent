@@ -1,0 +1,6 @@
+[submodule "alexa-rpi-skills"]
+	path = udemy/alexa_with_raspberry_pi/content_from_professor/alexa-rpi-skills
+	url = https://github.com/leeassam/alexa-rpi-skills.git
+[submodule "alexa-rpi-tv-control"]
+	path = udemy/alexa_with_raspberry_pi/content_from_professor/alexa-rpi-tv-control
+	url = https://github.com/leeassam/alexa-rpi-tv-control.git
