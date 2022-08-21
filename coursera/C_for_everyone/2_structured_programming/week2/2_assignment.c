@@ -3,7 +3,7 @@
  * @author Robert Tartarotti
  * @brief U
  * @version 0.1
- * @date 2022-08-14
+ * @date 2022-08-20
  * 
  * Given the file elephant_seal_data, read them into an array and compute the
  * average weight for the set of the elephant seals.
@@ -16,119 +16,68 @@
  * days and it most know how many days are in each month. Use a struct with
  * two members; one is the month and the second  is the day of the month—an int (or short).
  * 
- * Option 2 (Natural or Social Science Focus)
- * Write a struct that has a member that is the name of a business department:
- * HR, Sales, Research, Software, and Executive (use enums for the 4 departments).  
- * A second member that is an annual salary as an int. A third member that is a social 
- * security number(unsigned).  Generate 10 employees with different social security numbers. 
- * Invent a salary generator for each department (use some base salary for the department and 
- * add in a randomly generated offset).  Print out the 10 employees and their values to the
- * screen-one line at a time.
  */
 
 #include<stdio.h>
-#include<math.h> /* When using math.h lib, compile with -lm option */
 
-#define SIZE_MAX 5000
+enum dates {null, january, february, march, april, may, june, july, august, september, october, november, december}; //declare type
+typedef enum dates dates;
 
-/**
- * @brief Print the parameters of the array
- * 
- * @param how_many 
- * @param data 
- * @param str 
- */
-void print_array(int how_many, int data[], char *str)
+enum day {sun, mon, tue, wed, thu, fri, sat}; //declare type
+typedef enum day day;
+
+void print_day(enum day d)
 {
-    int i;
-    printf("%s", str); // print identification
-
-    for (i = 0; i < how_many; i++)
-        if (data[i] > 0) // if value have sense for this case
-            printf("%d\t", data[i]); // print the value
-}
-
-/**
- * @brief Get the values from file object
- * 
- * @param values 
- */
-void get_values_from_file(int values[])
-{
-    /* Declare file path */
-    char file_path[] = "/home/robert/Desktop/online_courses/coursera/C_for_everyone/1_programming_fundamentals/week5/elephant_seal_data.txt";
-
-    /* Open the file */
-    FILE* file_data = fopen(file_path, "r");
-
-    /* Verifying if tile exists */
-    if (file_data == NULL) {
-        printf("File not found.");
-        //return 1; // program exited due to error or anomaly, in this case, file not found.
-    }
-    
-    /* Read values from the file */
-    for (int i = 0; i < SIZE_MAX; i++)
+    switch (d)
     {
-        fscanf(file_data, "%d", &values[i]);
+    case sun: printf(" sunday "); break;
+    case mon: printf(" monday "); break;
+    case tue: printf(" tuesday "); break;
+    case wed: printf(" wednesday "); break;
+    case thu: printf(" thursday "); break;
+    case fri: printf(" friday "); break;
+    case sat: printf(" saturday "); break;
+    default: printf("%d is an error", d);
     }
-
-    /* Close the file */
-    fclose(file_data);
 }
 
-/**
- * @brief Print average of the values from the file
- * 
- * @param values 
- */
-void print_average(int values[])
-{
-    double counter = 0.0;
-    int sum = 0;
-    int local_value;
-    double average;
 
-    /* Get the sum of the values and the quantity of parameters that are bigger than 0 */
-    for (int i = 0; i < SIZE_MAX; i++)
+void print_month(enum dates m)
+{
+    switch (m)
     {
-        local_value = values[i];
-        if (local_value > 0)
-            counter++;
-            sum = sum + local_value;
+    case january: printf(" january "); break;
+    case february: printf(" february "); break;
+    case march: printf(" march "); break;
+    case april: printf(" april "); break;
+    case may: printf(" may "); break;
+    case june: printf(" june "); break;
+    case july: printf(" july "); break;
+    case august: printf(" august "); break;
+    case september: printf(" september "); break;
+    case october: printf(" october "); break;
+    case november: printf(" november "); break;
+    case december: printf(" december "); break;
+    default: printf("%d is an error", m);
     }
-
-    printf("\n The sum of the weights is %d kg\n", sum);
-
-    printf("\n number of samples is %f\n", counter);
-
-    average = sum/counter;
-
-    printf("\n The average weight for the set of the elephant seals is %lf kg\n", average);
 }
 
-/**
- * @brief main function
- * 
- * @return int 
- */
-int main(void)
+enum dates next_day(enum dates d){
+    return( d + 1 % 7 );
+}
+
+int main()
 {
-    /* Memory allocation for the data */
-    static int values[SIZE_MAX] = {0};
-
-    /* Pass the point to the function complete it with the values from the file */
-    get_values_from_file(values);
-
-    /* Print the components */
-    print_array(SIZE_MAX, values, "\nThe values from the file are\n\n");
-    printf("\n");
-
-    /* Print the average */
-    print_average(values);
-
+    enum day today = fri;
+    print_day(today);
+    printf("\n\n");
+    print_day(7);
+    printf("\n\n");
+    print_day(next_day(today));
+    printf("\n\n");
     return 0;
 }
+
 
 /*
     Result:
