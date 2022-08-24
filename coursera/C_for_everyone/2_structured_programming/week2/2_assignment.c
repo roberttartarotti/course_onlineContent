@@ -20,63 +20,187 @@
 
 #include<stdio.h>
 
-enum dates {null, january, february, march, april, may, june, july, august, september, october, november, december}; //declare type
-typedef enum dates dates;
+typedef enum month_days {jan_d = 31, feb_d = 28, mar_d = 31, apr_d = 30, may_d = 31, jun_d = 30,
+            jul_d = 31, aug_d = 31, sep_d = 30, oct_d = 31, nov_d = 30, dec_d = 31} month_days;
 
-enum day {sun, mon, tue, wed, thu, fri, sat}; //declare type
-typedef enum day day;
+typedef enum month{ jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec} month;
 
-void print_day(enum day d)
+typedef struct date{ month m; int d} date;
+
+void push(int da, enum month mo, date *stk)
 {
-    switch (d)
-    {
-    case sun: printf(" sunday "); break;
-    case mon: printf(" monday "); break;
-    case tue: printf(" tuesday "); break;
-    case wed: printf(" wednesday "); break;
-    case thu: printf(" thursday "); break;
-    case fri: printf(" friday "); break;
-    case sat: printf(" saturday "); break;
-    default: printf("%d is an error", d);
-    }
+    stk -> m = mo;
+    stk -> d = da;
 }
 
-
-void print_month(enum dates m)
+void print_month(enum month m)
 {
     switch (m)
     {
-    case january: printf(" january "); break;
-    case february: printf(" february "); break;
-    case march: printf(" march "); break;
-    case april: printf(" april "); break;
+    case jan: printf(" january "); break;
+    case feb: printf(" february "); break;
+    case mar: printf(" march "); break;
+    case apr: printf(" april "); break;
     case may: printf(" may "); break;
-    case june: printf(" june "); break;
-    case july: printf(" july "); break;
-    case august: printf(" august "); break;
-    case september: printf(" september "); break;
-    case october: printf(" october "); break;
-    case november: printf(" november "); break;
-    case december: printf(" december "); break;
+    case jun: printf(" june "); break;
+    case jul: printf(" july "); break;
+    case aug: printf(" august "); break;
+    case sep: printf(" september "); break;
+    case oct: printf(" october "); break;
+    case nov: printf(" november "); break;
+    case dec: printf(" december "); break;
     default: printf("%d is an error", m);
     }
 }
 
-enum dates next_day(enum dates d){
-    return( d + 1 % 7 );
+
+int get_month()
+{
+    int m;
+    printf("Please, insert the month: \n");
+    scanf("%d", &m);
+    if (m <= 0 || m >= 13)
+    {
+        printf("\nInvalid month, try again\n");
+        return -1;
+    }
+    return m;
+}
+
+
+int get_day(enum month_days m)
+{
+    int d;
+    printf("Please, insert the day: \n");
+    scanf("%d", &d);
+    if (d <= 0 || d > m)
+    {
+        printf("\nInvalid day, try again\n");
+        return -1;
+    }
+    return d;
+}
+
+
+void print_next_day(date *stk)
+{
+    int current_day = stk -> d;
+    enum month current_month = stk -> m;
+
+
 }
 
 int main()
 {
-    enum day today = fri;
-    print_day(today);
+    int m = -1;
+    while (m == -1){
+        m = get_month();
+    }
+
+    int d = -1;
+    while (d == -1)
+    {
+        switch (m-1)
+        {
+        case jan: d = get_day(jan_d); break;
+        case feb: d = get_day(feb_d); break;
+        case mar: d = get_day(mar_d); break;
+        case apr: d = get_day(apr_d); break;
+        case may: d = get_day(may_d); break;
+        case jun: d = get_day(jun_d); break;
+        case jul: d = get_day(jul_d); break;
+        case aug: d = get_day(aug_d); break;
+        case sep: d = get_day(sep_d); break;
+        case oct: d = get_day(oct_d); break;
+        case nov: d = get_day(nov_d); break;
+        case dec: d = get_day(dec_d); break;
+        default: printf("%d is an error", m);
+        }    
+    }
+
+    //date -> d = d;
+    
+    // print_day(today);
     printf("\n\n");
-    print_day(7);
+    printf("m = %d", m);
+    // print_day(7);
     printf("\n\n");
-    print_day(next_day(today));
+    printf("d = %d", d);
+    // print_day(next_day(today));
     printf("\n\n");
     return 0;
 }
+
+
+
+
+
+
+
+// typedef enum month{ jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec} month;
+// typedef enum month_days {jan_d = 31, feb_d = 28, mar_d = 31, apr_d = 30, may_d = 31, jun_d = 30,
+//             jul_d = 31, aug_d = 31, sep_d = 30, oct_d = 31, nov_d = 30, dec_d = 31} month_days;
+
+// typedef struct date{ month m; month_days d} date;
+
+
+//  //declare type
+// typedef enum month month;
+
+// enum day {sun, mon, tue, wed, thu, fri, sat}; //declare type
+// typedef enum day day;
+
+// void print_day(enum day d)
+// {
+//     switch (d)
+//     {
+//     case sun: printf(" sunday "); break;
+//     case mon: printf(" monday "); break;
+//     case tue: printf(" tuesday "); break;
+//     case wed: printf(" wednesday "); break;
+//     case thu: printf(" thursday "); break;
+//     case fri: printf(" friday "); break;
+//     case sat: printf(" saturday "); break;
+//     default: printf("%d is an error", d);
+//     }
+// }
+
+
+// void print_month(enum month m)
+// {
+//     switch (m)
+//     {
+//     case january: printf(" january "); break;
+//     case february: printf(" february "); break;
+//     case march: printf(" march "); break;
+//     case april: printf(" april "); break;
+//     case may: printf(" may "); break;
+//     case june: printf(" june "); break;
+//     case july: printf(" july "); break;
+//     case august: printf(" august "); break;
+//     case september: printf(" september "); break;
+//     case october: printf(" october "); break;
+//     case november: printf(" november "); break;
+//     case december: printf(" december "); break;
+//     default: printf("%d is an error", m);
+//     }
+// }
+
+// enum month next_day(enum month d){
+//     return( d + 1 % 7 );
+// }
+
+// int main()
+// {
+//     //enum day today = fri;
+//     // print_day(today);
+//     printf("\n\n");
+//     // print_day(7);
+//     printf("\n\n");
+//     // print_day(next_day(today));
+//     printf("\n\n");
+//     return 0;
+// }
 
 
 /*
