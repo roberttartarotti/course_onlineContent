@@ -1,7 +1,7 @@
 /**
  * @file 2_assignment.c
  * @author Robert Tartarotti
- * @brief U
+ * @brief Next day
  * @version 1.0.0
  * @date 2023-09-17
  * 
