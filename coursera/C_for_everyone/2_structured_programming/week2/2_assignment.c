@@ -3,7 +3,7 @@
  * @author Robert Tartarotti
  * @brief Next day
  * @version 1.0.0
- * @date 2023-09-17
+ * @date 2023-09-18
  * 
  * Option 1 (General)
  * Write enumerated types that supports dates—such as december 12.
@@ -34,6 +34,9 @@ typedef struct date{
     int d;
     } date;
 
+/**
+ * @brief Convert input char array to enum month and max quantity of days in the month for 2023
+ */
 void month_char_to_int(char * str_month, int* month_id, int* max_days)
 {
     if (!strcmp(str_month, "January")) {
@@ -75,6 +78,10 @@ void month_char_to_int(char * str_month, int* month_id, int* max_days)
     }
 }
 
+
+/**
+ * @brief Get the next day
+ */
 date *nextday(char * input_date) {
     int month_id, max_days;
     date *date_data;
@@ -92,6 +99,9 @@ date *nextday(char * input_date) {
     return date_data;
 }
 
+/**
+ * @brief Print the month
+ */
 void print_month(enum month m)
 {
     switch (m)
@@ -112,8 +122,9 @@ void print_month(enum month m)
     }
 }
 
-
-
+/**
+ * @brief Print the next day
+ */
 void print_next_day(date *date_data)
 {
     printf("\nNext day: ");
