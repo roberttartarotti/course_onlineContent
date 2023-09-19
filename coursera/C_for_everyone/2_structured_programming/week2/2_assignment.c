@@ -39,40 +39,40 @@ typedef struct date{
  */
 void month_char_to_int(char * str_month, int* month_id, int* max_days)
 {
-    if (!strcmp(str_month, "January")) {
+    if (!strcmp(str_month, "January") || !strcmp(str_month, "january")) {
         *month_id = jan;
         *max_days = jan_d;
-    } else if (!strcmp(str_month, "February")) {
+    } else if (!strcmp(str_month, "February") || !strcmp(str_month, "february")) {
         *month_id = feb;
         *max_days = feb_d;
-    } else if (!strcmp(str_month, "March")) {
+    } else if (!strcmp(str_month, "March") || !strcmp(str_month, "march")) {
         *month_id = mar;
         *max_days = mar_d;
-    } else if (!strcmp(str_month, "April")) {
+    } else if (!strcmp(str_month, "April") || !strcmp(str_month, "april")) {
         *month_id = apr;
         *max_days = apr_d;
-    } else if (!strcmp(str_month, "May")) {
+    } else if (!strcmp(str_month, "May") || !strcmp(str_month, "may")) {
         *month_id = may;
         *max_days = may_d;
-    } else if (!strcmp(str_month, "June")) {
+    } else if (!strcmp(str_month, "June") || !strcmp(str_month, "june")) {
         *month_id = jun;
         *max_days = jun_d;
-    } else if (!strcmp(str_month, "July")) {
+    } else if (!strcmp(str_month, "July") || !strcmp(str_month, "july")) {
         *month_id = jul;
         *max_days = jul_d;
-    } else if (!strcmp(str_month, "August")) {
+    } else if (!strcmp(str_month, "August") || !strcmp(str_month, "august")) {
         *month_id = aug;
         *max_days = aug_d;
-    } else if (!strcmp(str_month, "September")) {
+    } else if (!strcmp(str_month, "September") || !strcmp(str_month, "september")) {
         *month_id = sep;
         *max_days = sep_d;
-    } else if (!strcmp(str_month, "October")) {
+    } else if (!strcmp(str_month, "October") || !strcmp(str_month, "october")) {
         *month_id = oct;
         *max_days = oct_d;
-    } else if (!strcmp(str_month, "November")) {
+    } else if (!strcmp(str_month, "November") || !strcmp(str_month, "november")) {
         *month_id = nov;
         *max_days = nov_d;
-    } else if (!strcmp(str_month, "December")) {
+    } else if (!strcmp(str_month, "December") || !strcmp(str_month, "december")) {
         *month_id = dec;
         *max_days = dec_d;
     }
@@ -92,6 +92,9 @@ date *nextday(char * input_date) {
     if (int_day == max_days){
         date_data->m = month_id + 1;
         date_data->d = 1;
+    } else if (int_day > max_days){
+        printf("\n Invalid input argument \n");
+        exit(1);
     } else {
         date_data->m = month_id;
         date_data->d = int_day + 1;
@@ -106,19 +109,21 @@ void print_month(enum month m)
 {
     switch (m)
     {
-    case jan: printf(" january "); break;
-    case feb: printf(" february "); break;
-    case mar: printf(" march "); break;
-    case apr: printf(" april "); break;
-    case may: printf(" may "); break;
-    case jun: printf(" june "); break;
-    case jul: printf(" july "); break;
-    case aug: printf(" august "); break;
-    case sep: printf(" september "); break;
-    case oct: printf(" october "); break;
-    case nov: printf(" november "); break;
-    case dec: printf(" december "); break;
-    default: printf("%d is an error", m);
+    case jan: printf(" January "); break;
+    case feb: printf(" February "); break;
+    case mar: printf(" March "); break;
+    case apr: printf(" April "); break;
+    case may: printf(" May "); break;
+    case jun: printf(" June "); break;
+    case jul: printf(" July "); break;
+    case aug: printf(" August "); break;
+    case sep: printf(" September "); break;
+    case oct: printf(" October "); break;
+    case nov: printf(" November "); break;
+    case dec: printf(" December "); break;
+    default:
+        printf("\n Invalid input argument \n");
+        exit(1);
     }
 }
 
